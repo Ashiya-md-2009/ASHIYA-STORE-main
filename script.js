@@ -161,103 +161,110 @@ function updateClock() {
 
  //========= Select button and Remove button now fucking bich 😩💗
  
-  let cart = [];
-
-  function updateCart() {
-    let total = 0;
-    const cartItemsDiv = document.getElementById("cartItems");
-
-    if (cart.length === 0) {
-      cartItemsDiv.innerHTML = "No items yet.";
-    } else {
-      cartItemsDiv.innerHTML = cart.map(item => {
-        total += item.price;
-        return `<div>📦 ${item.name} - ${item.label} = Rs. ${item.price}</div>`;
-      }).join("");
+let cart = [];
+    
+    function updateCart() {
+      let total = 0;
+      const cartItemsDiv = document.getElementById("cartItems");
+      
+      if (cart.length === 0) {
+        cartItemsDiv.innerHTML = "No items yet.";
+      } else {
+        cartItemsDiv.innerHTML = cart.map(item => {
+          total += item.price;
+          return `<div>📦 ${item.name} - ${item.label} = Rs. ${item.price}</div>`;
+        }).join("");
+      }
+      document.getElementById("total").innerText = total;
     }
-    document.getElementById("total").innerText = total;
-  }
-
-  function openTextSelect(button, productName, options) {
-    const overlay = document.createElement("div");
-    overlay.className = "overlay";
-
-    const modal = document.createElement("div");
-    modal.className = "modal";
-
-    modal.innerHTML = `<h3>${productName} Options</h3>`;
-
-    options.forEach(opt => {
-      const label = document.createElement("label");
-      label.innerHTML = `<input type="radio" name="choice" value="${opt.price}" data-label="${opt.label}"> ${opt.label} - Rs. ${opt.price}`;
-      modal.appendChild(label);
-    });
-
-    const btn = document.createElement("button");
-    btn.textContent = "Select";
-    btn.onclick = () => {
-      const chk = modal.querySelector("input[type=radio]:checked");
-      if (!chk) {
-        alert("Please select one option!");
+    
+    function openTextSelect(button, productName, options) {
+      const overlay = document.createElement("div");
+      overlay.className = "overlay";
+      
+      const modal = document.createElement("div");
+      modal.className = "modal";
+      
+      modal.innerHTML = `<h3>${productName} Options</h3>`;
+      
+      options.forEach(opt => {
+        const label = document.createElement("label");
+        label.innerHTML = `<input type="radio" name="choice" value="${opt.price}" data-label="${opt.label}"> ${opt.label} - Rs. ${opt.price}`;
+        modal.appendChild(label);
+      });
+      
+      const btn = document.createElement("button");
+      btn.textContent = "Select";
+      btn.onclick = () => {
+        const chk = modal.querySelector("input[type=radio]:checked");
+        if (!chk) {
+          alert("Please select one option!");
+          return;
+        }
+        
+        const card = button.parentElement;
+        const selectedTextDiv = card.querySelector(".selected-text");
+        selectedTextDiv.innerText = `${chk.dataset.label} - Rs. ${chk.value}`;
+        
+        let removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remove";
+        removeBtn.style.marginLeft = "10px";
+        removeBtn.style.padding = "5px 10px";
+        removeBtn.style.border = "none";
+        removeBtn.style.borderRadius = "6px";
+        removeBtn.style.background = "#ff4444";
+        removeBtn.style.color = "#fff";
+        removeBtn.style.cursor = "pointer";
+        
+        removeBtn.onclick = () => {
+          selectedTextDiv.innerText = "No selection";
+          cart = cart.filter(item => item.name !== productName);
+          updateCart();
+          removeBtn.remove();
+        };
+        
+        selectedTextDiv.appendChild(removeBtn);
+        
+        cart = cart.filter(item => item.name !== productName);
+        cart.push({ name: productName, label: chk.dataset.label, price: parseInt(chk.value) });
+        
+        updateCart();
+        overlay.remove();
+      };
+      
+      modal.appendChild(btn);
+      overlay.appendChild(modal);
+      document.body.appendChild(overlay);
+      
+      overlay.addEventListener("click", e => {
+        if (e.target === overlay) overlay.remove();
+      });
+    }
+    
+    // 🟢 WhatsApp Order Message
+    function sendToWhatsApp() {
+      if (cart.length === 0) {
+        alert("Cart is empty!");
         return;
       }
-
-      // 🟢 Card එක find කරන්න
-      const card = button.closest(".card");
-
-      // 🟢 Selected text update කරන්න
-      card.querySelector(".selected-text").innerHTML =
-        `${chk.dataset.label} - Rs. ${chk.value} 
-         <button onclick="clearSelection(this,'${productName}')" 
-         style="margin-left:10px;margin-bottom:30px;padding:3px 6px;border:none;border-radius:4px;background:red;color:#fff;font-weight:600;cursor:pointer;">Remove</button>`;
-
-      // 🟢 Cart එක update කරන්න
-      cart = cart.filter(item => item.name !== productName);
-      cart.push({ name: productName, label: chk.dataset.label, price: parseInt(chk.value) });
-
-      updateCart();
-      overlay.remove();
-    };
-
-    modal.appendChild(btn);
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    overlay.addEventListener("click", e => {
-      if (e.target === overlay) overlay.remove();
-    });
-  }
-
-  // 🟢 Clear selection function (FIXED)
-  function clearSelection(btn, productName) {
-    // Card එකේ selected-text reset කරන්න
-    const card = btn.closest(".card");
-    card.querySelector(".selected-text").innerText = "No selection";
-
-    // Cart එකෙන් remove කරන්න
-    cart = cart.filter(item => item.name !== productName);
-    updateCart();
-  }
-
-  function sendToWhatsApp() {
-    if (cart.length === 0) {
-      alert("Cart is empty!");
-      return;
+      
+      let message = "*ASHIYA Web Store*%0A%0A";
+      message += "🛒 *Order List*%0A--------------------%0A";
+      
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        message += `${index + 1}. ${item.name} - ${item.label} = Rs. ${item.price}%0A`;
+      });
+      
+      message += "--------------------%0A";
+      message += `💰 *Total:* Rs. ${total}%0A%0A`;
+      message += "📌 Please reply with your payment receipt.%0A✅ Thank you!";
+      
+      let phone = "94741856766"; // WhatsApp Number
+      let url = `https://wa.me/${phone}?text=${message}`;
+      window.open(url, "_blank");
     }
-
-    let message = "*ASHIYA web store* %0A%0A";
-    message += "🛒 Order:%0A";
-    let total = 0;
-    cart.forEach(item => {
-      message += `${item.name} - ${item.label} = ${item.price} LKR%0A`;
-      total += item.price;
-    });
-    message += `%0A💰 Total: ${total} LKR%0A%0A📌 Please reply with your payment receipt.%0A✅ Thank you!`;
-
-    let phone = "94741856766";
-    let url = `https://wa.me/${phone}?text=${message}`;
-    window.open(url, "_blank");
-  }
   
   
   
