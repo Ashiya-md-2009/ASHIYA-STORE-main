@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ASHIYA-STORE main</title>
+  <link rel="stylesheet" href="style.css">
+
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="ASHIYA-STORE">
+  <meta property="og:description" content="Ashiya-md store | Create by AYESH">
+  <meta property="og:image" content="https://files.catbox.moe/kf704k.jpg">
+  <meta property="og:url" content="https://ashiya-md.store/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ASHIYA-STORE">
+  <meta name="twitter:description" content="ashiya-store | Create by AYESH">
+  <meta name="twitter:image" content="https://files.catbox.moe/kf704k.jpg">
+</head>
+<body>
+  
+ <header class="nav" role="navigation">
+  <div class="logo">
+    <div class="logo-badge"><img src="ashiya-img.jpg" alt="ASHIYA-STORE-IMAGE" title="ASHIYA-STORE main-image" /></div>
+    <div class="logo-text">
+      <div class="logo-main">
+        <div class="glitch" data-text="ASHIYA-STORE"><span class="title type">ASHIYA-STORE</span></div>
+        <div class="cursor" aria-hidden="true"></div>
+      </div>
+      <div style="font-size:13px;color:#444;margin-top:4px;font-weight: 700;">ASHIYA-STORE</div>
+    </div>
+  </div>
+
+  <nav class="navlinks">
+    <ul id="menu">
+      <li><a data-target="home" data-key="home"><span class="inner">HOME</span></a></li>
+      <li><a data-target="about" data-key="browse"><span class="inner">CONTACT</span></a></li>
+      <li><a href="#about" data-key="about"><span class="inner">ABOUT</span></a></li>
+    </ul>
+    <div id="indicator" class="active-indicator"></div>
+  </nav>
+
+  <div class="controls">
+    <div class="search">
+      <input placeholder="Search..." />
+    </div>
+ <div id="clock">12:00:00 AM</div>
+    <button class="hamburger" id="hambtn"><span class="bar"></span></button>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#home">HOME</a>
+  <a href="https://wa.me/+94741856766?text=Hy_ASHIYA-MD 🥷🇱🇰">CONTACT</a>
+  <a href="#about">ABOUT</a>
+</div>
+
+<!-- Sections -->
+  <section id="home"></sectiontc>
+
+<!---- main ---->
+<main class="main">
+  <!--- image box------>
+  <div class="image">
+    <img src="ashiya-img.jpg" alt="ASHIYA-STORE"/>
+    <h3>ASHIYA STORE</h3>
+    <p>WELCOME TO MY OUR STORE</p>
+  </div>
+
+  
+<div class="store">
+  
+  <!----- card 1 ----->
+    <div class="card">
+      <h3>WHATSAPP BOT PAIR WEB</h3>
+      <div class="price">Rs.200</div>
+      <!---- img button ---->
+      <button class="view-btn" onclick="showGallery([
+  'https://files.catbox.moe/8l8dbz.jpg',
+  'https://files.catbox.moe/ffx7uw.jpg'
+])">View web imgs</button>
+      
+      <button class="select-btn" onclick="openTextSelect(this,'WHATSAPP PAIR WEB LIST', [
+        {label:'1. MAIN-WEB', price:1500},
+        {label:'2. MINI-BOT PAIR WEB', price:250},
+        {label:'3. MAIN AND PAIR WEB', price:1700},
+        {label:'4. FULL MAIN AND PAIR WEB', price:1900}
+      ])">Select Web</button>
+      <div class="selected-text">No selection</div>
+    </div>
+    
+    <!----- card 2 ----->
+    <div class="card">
+      <h3>FREE FIRE DIAMONDS-STORE WEB</h3>
+      <div class="price">Rs. 1500</div>
+      <!---- img button ---->
+    <button class="view-btn" onclick="showGallery([
+  'https://files.catbox.moe/x0r20z.jpg',
+  'https://files.catbox.moe/4074dd.jpg'
+])">View web imgs</button>
+      <button class="select-btn" onclick="openTextSelect(this,'FREE FIRE DIAMONDS-STORE WEB', [
+        {label:'1. FULL DIAMONDS-STORE WEB', price:2000},
+        {label:'2. [CONTACT , YT , FB , TIK TOK]', price:500}
+      ])">Select Web</button>
+      <div class="selected-text">No selection</div>
+    </div>
+    
+    <!----- card 3 ----->
+    <div class="card">
+      <h3>STORE WEB</h3>
+      <div class="price">Rs.2000</div>
+      <!---- img button ---->
+  <button class="view-btn" onclick="showGallery([
+  'https://files.catbox.moe/qxd5us.jpg'
+])">View web imgs</button>
+      <button class="select-btn" onclick="openTextSelect(this,'STORE WEB', [
+        {label:'1. CONTACT PLAY STORE WEB', price:600},
+        {label:'2. NORMAL STORE WEB', price:500}
+      ])">Select Web</button>
+      <div class="selected-text">No selection</div>
+    </div>
+
+<!----- card 4 ----->
+    <div class="card">
+      <h3>OFFICIAL WEB</h3>
+      <div class="price">Rs.1800</div>
+      <!---- img button ---->
+  <button class="view-btn" onclick="showGallery([
+  'https://files.catbox.moe/j4ozjk.jpg'
+])">View web imgs</button>
+      <button class="select-btn" onclick="openTextSelect(this,'OFFICIAL WEB', [
+        {label:'1. CONTACT PLAY OFFICIAL WEB', price:1800},
+      ])">Select Web</button>
+      <div class="selected-text">No selection</div>
+    </div>
+
+
+    
+  </div>
+  <!-- Sections -->
+  <section id="about"></section>
+   <div class="bank">
+     <div class="ez-kard">
+      <h3>📍 ABOUT-DETAILS</h3>
+<p>🪄 <b>EZ Cash:</b> 0760746437<br>
+  ⚠️ Add extra Rs.20 when paying via EZ Cash</p><br><br>
+  </div>
+
+<strong>ඔයාට කරන්න තියෙන්නේ web එක සැදිමට පේර advance එකක් ලබා දි ඔබගේ web site එක සදා ගත් පසු ඉතුරැ මුදල් අප වෙත ලබා දිමට පමනයි in පසු ඔබගේ web site එක අපගේන් ලබා ගත හැක.<br><br><br>
+
+
+ස්තුතියි.....!</b></strong><br><br>
+<p>(An advance payment is required to start your website. The balance can be paid after completion. Thank you!)</p>
+</div>
+
+
+  <div class="cart">
+            <h2>Step 3 — Your Order</h2>
+    <div class="cart-items" id="cartItems">No items yet.</div>
+    <hr>
+    <div class="total"><b>Total: Rs. <span id="total">0</span></b></div>
+    <button class="whatsapp-btn" onclick="sendToWhatsApp()">Send to WhatsApp</button>
+  </div>
+  
+  <footer>
+    &copy; 2025 Powered by ASHIYA-MD 🥷
+  </footer>
+  
+</main>
+ <script src="script.js"></script> 
+</body>
+</html>
